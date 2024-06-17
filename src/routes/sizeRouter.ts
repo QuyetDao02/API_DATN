@@ -1,0 +1,11 @@
+import { Router } from 'express';
+import { container } from 'tsyringe';
+import { SizeController } from '../controllers/sizeController';
+const sizeRouter = Router();
+const sizeController = container.resolve(SizeController);
+sizeRouter.get('/getbyid/:id', sizeController.getsizeById.bind(sizeController));
+sizeRouter.get('/getall', sizeController.getsizeAll.bind(sizeController));
+sizeRouter.post('/update', sizeController.updatesize.bind(sizeController));
+sizeRouter.post('/create', sizeController.createsize.bind(sizeController));
+sizeRouter.post('/delete/:id', sizeController.deletesize.bind(sizeController));
+export default sizeRouter;

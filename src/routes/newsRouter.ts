@@ -1,0 +1,11 @@
+import { Router } from 'express';
+import { container } from 'tsyringe';
+import { NewsController } from '../controllers/newsController';
+const newsRouter = Router();
+const newsController = container.resolve(NewsController);
+newsRouter.get('/getbyid/:id', newsController.getNewsId.bind(newsController));
+newsRouter.get('/getall', newsController.getNewsAll.bind(newsController));
+newsRouter.post('/update', newsController.updateNews.bind(newsController));
+newsRouter.post('/create', newsController.createNews.bind(newsController));
+newsRouter.post('/delete/:id', newsController.deleteNews.bind(newsController));
+export default newsRouter;
